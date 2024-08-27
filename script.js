@@ -8,8 +8,8 @@ function upDate(previewPic) {
          2) Change the text  of the div with the id = "image" 
          to the alt text of the preview image 
          */
-    let image = document.getElementById("image");
-    image.style.background = "url(" + previewPic.src + ")";
+    document.getElementById("image").style.background = "url(" + previewPic.src + ")";
+    document.getElementById("image").innerHTML = previewPic.alt;
 }
 
 function unDo() {
