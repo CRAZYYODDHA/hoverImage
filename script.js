@@ -1,26 +1,42 @@
-/*Name this external file gallery.js*/
-
 function upDate(previewPic) {
-    /* In this function you should 
-         1) change the url for the background image of the div with the id = "image" 
-         to the source file of the preview image
-         
-         2) Change the text  of the div with the id = "image" 
-         to the alt text of the preview image 
-         */
-    document.getElementById("image").style.background = "url(" + previewPic.src + ")";
-    document.getElementById("image").innerHTML = previewPic.alt;
+    let image = document.getElementById('image');
+    image.style.background = "url(" + previewPic.src + ")";
+    image.innerHTML = previewPic.alt;
 }
 
 function unDo() {
-    /* In this function you should 
-     1) Update the url for the background image of the div with the id = "image" 
-     back to the orginal-image.  You can use the css code to see what that original URL was
-     
-     2) Change the text  of the div with the id = "image" 
-     back to the original text.  You can use the html code to see what that original text was
-     */
     let image = document.getElementById('image');
     image.style.backgroundImage = 'url("")';
     image.style.backgroundColor = '#8e68ff';
+    image.innerHTML = "Hover over an image below to display here.";
+}
+
+
+let currentImg = document.getElementsByTagName('img');
+for(let i = 0; i < currentImg.length; i++) {
+    currentImg[i].setAttribute("tabindex", "0");
+    currentImg[i].setAttribute("onfocus", "upDate(this)");
+    currentImg[i].setAttribute("onblur", "unDo()");
+}
+
+let veg = ['Pea', 'Cauliflower', 'Raddish', 'Tomato'];
+let nonVeg = ['Chicken', 'Mutton', 'Fish', 'Egg'];
+
+const displayFood = () => {
+    document.getElementById('veg').innerHTML = veg;
+    document.getElementById('non-veg').innerHTML = nonVeg;
+}
+
+
+function vegInsert() {
+    let vegList = document.getElementById('veg');
+    let enterVegFood = prompt('Enter the vegetable you want to check');
+    veg[veg.length] = enterVegFood;
+    vegList.innerHTML = veg;
+}
+function nonVegInsert() {
+    let nonVegList = document.getElementById('non-veg');
+    let enterNonVegFood = prompt('Enter the vegetable you want to check');
+    nonVeg[nonVeg.length] = enterNonVegFood;
+    nonVegList.innerHTML = nonVeg;
 }
